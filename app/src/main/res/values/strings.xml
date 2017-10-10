@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">HIV Survey</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_title_survey">แบบประเมินพฤติกรรมเสี่ยง\nเพื่อส่งเสริมบุคคลเข้ารับการปรึกษาและตรวจเชื้อเอชไอวีโดยสมัครใจ</string>
+    <string name="text_title_personal_information">ข้อมูลพื้นฐานของผู้รับบริการ</string>
+    <string name="hint_name">ชื่อ</string>
+    <string name="hint_id_card">หมายเลขบัตรประชาชน</string>
+    <string name="hint_tel">เบอร์โทรศัพท์</string>
+    <string name="hint_age">อายุ</string>
+    <string name="button_next">หน้าถัดไป</string>
+    <string name="button_done">เสร็จสิ้น</string>
+    <string name="text_personal_information_question">เคยรับการตรวจเลือดเพื่อคัดกรองโรคหรือไม่</string>
+    <string name="text_answer_yes">เคย</string>
+    <string name="text_answer_no">ไม่เคย</string>
+    <string name="text_title_question_2">การประเมินขั้นต้น</string>
+    <string name="button_yes">เคย</string>
+    <string name="button_no">ไม่เคย</string>
+    <string name="button_personal_information">กรอกประวัติส่วนตัว</string>
+    <string name="button_survey">แบบประเมินความเสี่ยง</string>
+    <string name="text_maybe">ถ้ามี ...</string>
+    <string-array name="question">
+        <item>1. มีอาการที่เข้าได้กับ AVS, AIDS-defining illness (เช่น วัณโรค) หรือโรคติดต่อทางเพศสัมพันธ์</item>
+        <item>2. มีโอกาสสัมผัสเลือด เช่น เข้ามาซื้อเข็มฉีดยา/ใช้ยาและสารเสพติดโดยเฉพาะชนิดที่ฉีดเข้าเส้น/สัก</item>
+        <item>3. มีพฤติกรรมทางเฟศที่ไม่ปลอดภัย เช่น ไม่ใช้ถุงยางอนามัย/มีคู่นอนมากกว่า 1 คนต่อ 3 เดือน/ใช้ยาหรือสารเสพติดขณะมีเพศสัมพันธ์/มีเพศสัมพันธ์ทางทวารหนัก</item>
+        <item>4. อื่นๆ</item>
+    </string-array>
+</resources>

@@ -1,0 +1,59 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context="me.dev.bkk.hivsurvey.views.question.QuestionFragment">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        style="@style/HeaderTextStyle"
+        android:text="@string/text_title_question_2"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/HeaderTextStyle"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:textSize="@dimen/font_normal"
+        tools:text="question"/>
+
+    <Button
+        android:id="@+id/btn_yes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_normal"
+        android:text="@string/button_yes"/>
+    <Button
+        android:id="@+id/btn_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_normal"
+        android:text="@string/button_no"/>
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/et_another"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_maybe"
+        android:gravity="top|start"
+        android:background="@drawable/form_editext"
+        android:minLines="5"/>
+    <android.support.v7.widget.AppCompatButton
+
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Button.Pink"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/button_done"/>
+
+</LinearLayout>
