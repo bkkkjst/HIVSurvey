@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".views.question.QuestionActivity">
         </activity>
+        <activity android:name=".views.behaviorquestion.BehaviorQuestionActivity">
+        </activity>
     </application>
 
 </manifest>

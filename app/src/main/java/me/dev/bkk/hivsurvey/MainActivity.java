@@ -8,15 +8,18 @@ import android.widget.Button;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.dev.bkk.hivsurvey.views.behaviorquestion.BehaviorQuestionActivity;
 import me.dev.bkk.hivsurvey.views.personalinformation.PersonalInformationActivity;
 import me.dev.bkk.hivsurvey.views.question.QuestionActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.btn_personal_information)
     Button mBtnPersonalInformation;
     @BindView(R.id.btn_survey)
     Button mBtnSurvey;
+    @BindView(R.id.btn_survey_behavior)
+    Button mBtnSurveyBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,27 +34,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setupListener() {
         mBtnPersonalInformation.setOnClickListener(this);
         mBtnSurvey.setOnClickListener(this);
+        mBtnSurveyBehavior.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_personal_information:
                 openPersonalInformation();
                 break;
             case R.id.btn_survey:
                 openSurvey();
                 break;
+            case R.id.btn_survey_behavior:
+                openBehaviorQuestion();
+                break;
         }
     }
 
-    private void openPersonalInformation(){
+    private void openPersonalInformation() {
         Intent intent = new Intent(MainActivity.this, PersonalInformationActivity.class);
         startActivity(intent);
     }
 
-    private void openSurvey(){
+    private void openSurvey() {
         Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+        startActivity(intent);
+    }
+
+    private void openBehaviorQuestion() {
+        Intent intent = new Intent(MainActivity.this, BehaviorQuestionActivity.class);
         startActivity(intent);
     }
 }

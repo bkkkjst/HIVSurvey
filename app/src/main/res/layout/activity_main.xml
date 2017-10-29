@@ -21,5 +21,11 @@
         android:layout_height="wrap_content"
         style="@style/Button.Pink"
         android:text="@string/button_survey"/>
+    <Button
+        android:id="@+id/btn_survey_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Button.Pink"
+        android:text="@string/button_survey_behavior"/>
 
 </LinearLayout>

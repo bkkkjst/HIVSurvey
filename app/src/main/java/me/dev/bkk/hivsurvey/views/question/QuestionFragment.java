@@ -58,10 +58,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_question, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        question = getResources().getStringArray(R.array.question);
-        ;
 
-        setupQuestion(questionNo);
+
+        setupQuestion();
         setupListener();
 
         return view;
@@ -73,7 +72,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         mBtnDone.setOnClickListener(this);
     }
 
-    private void setupQuestion(int questionNo) {
+    private void setupQuestion() {
+        question = getResources().getStringArray(R.array.question);
         mTvQuestion.setText(question[questionNo]);
     }
 

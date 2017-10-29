@@ -14,20 +14,37 @@
     <string name="hint_tel">เบอร์โทรศัพท์</string>
     <string name="hint_age">อายุ</string>
     <string name="button_next">หน้าถัดไป</string>
+    <string name="button_previous">ย้อนกลับ</string>
     <string name="button_done">เสร็จสิ้น</string>
     <string name="text_personal_information_question">เคยรับการตรวจเลือดเพื่อคัดกรองโรคหรือไม่</string>
     <string name="text_answer_yes">เคย</string>
     <string name="text_answer_no">ไม่เคย</string>
     <string name="text_title_question_2">การประเมินขั้นต้น</string>
+    <string name="text_title_question_4">การประเมินพฤติกรรมเสี่ยง</string>
     <string name="button_yes">เคย</string>
     <string name="button_no">ไม่เคย</string>
     <string name="button_personal_information">กรอกประวัติส่วนตัว</string>
     <string name="button_survey">แบบประเมินความเสี่ยง</string>
+    <string name="button_survey_behavior">แบบประเมินพฤติกรรมเสี่ยง</string>
     <string name="text_maybe">ถ้ามี ...</string>
+    <string name="text_answer_ever">เคย</string>
+    <string name="text_answer_never">ไม่เคย</string>
+    <string name="text_title_yourself">ตัวท่าน</string>
+    <string name="text_title_lover">คู่ของท่าน</string>
+    <string name="text_answer_risk">เสี่ยง</string>
+    <string name="text_answer_no_risk">ไม่เสี่ยง</string>
+    <string name="text_answer_not_sure">ไม่แน่ใจ</string>
     <string-array name="question">
         <item>1. มีอาการที่เข้าได้กับ AVS, AIDS-defining illness (เช่น วัณโรค) หรือโรคติดต่อทางเพศสัมพันธ์</item>
         <item>2. มีโอกาสสัมผัสเลือด เช่น เข้ามาซื้อเข็มฉีดยา/ใช้ยาและสารเสพติดโดยเฉพาะชนิดที่ฉีดเข้าเส้น/สัก</item>
         <item>3. มีพฤติกรรมทางเฟศที่ไม่ปลอดภัย เช่น ไม่ใช้ถุงยางอนามัย/มีคู่นอนมากกว่า 1 คนต่อ 3 เดือน/ใช้ยาหรือสารเสพติดขณะมีเพศสัมพันธ์/มีเพศสัมพันธ์ทางทวารหนัก</item>
         <item>4. อื่นๆ</item>
+    </string-array>
+    <string-array name="behavior_question">
+        <item>1. มีเพศสัมพันธ์โดยไม่ใช้ถุงยางอนามัย หรือใช้แต่เกิดอุบัติเหตุ (ถุงยางเลื่อนหลุด แตก) หรือ มีแผลเปิดและสัมผัสสารจากอวัยวะเพศคู่นอน</item>
+        <item>2. เคยได้รับการวินิจฉัยว่าเป็นวัณโรค หรือโรคติดต่อทางเพศสัมพันธ์อื่นๆ เช่น หนองใน ซิฟิลิส ฯลฯ</item>
+        <item>3. ดื่มเหล้าหรือใช้สารเสพติดก่อนหรือะหว่างการมีเพศสัมพันธ์</item>
+        <item>4. เคยใช้ยาเสพติดฉีดเข้าเส้นหรือสักผิวหนัง หรือเคยมีเพศสัมพันธ์กับคนที่เคยใช้ยาเสพติดเข้าเส้น</item>
+        <item>5. ผู้รับบริการคิดว่าตัวเองและคู่นอนเสี่ยงต่อการติดเชื้อเอชไอวี</item>
     </string-array>
 </resources>
