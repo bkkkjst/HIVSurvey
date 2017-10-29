@@ -1,8 +1,10 @@
 package me.dev.bkk.hivsurvey.views.behaviorquestion;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatTextView;
@@ -62,7 +64,6 @@ public class BehaviorQuestionFragment extends Fragment implements
 
     private String question[];
     private int questionNo = 0;
-    private List<int[]> answer = new ArrayList<int[]>();
     private int yourselfAnswer[];
     private int loverAnswer[];
 
@@ -95,9 +96,6 @@ public class BehaviorQuestionFragment extends Fragment implements
     private void setupAnswer() {
         yourselfAnswer = new int[question.length];
         loverAnswer = new int[question.length];
-
-        answer.add(yourselfAnswer);
-        answer.add(loverAnswer);
     }
 
     private void setupListener() {
@@ -109,6 +107,7 @@ public class BehaviorQuestionFragment extends Fragment implements
     private void setupQuestion() {
         question = getResources().getStringArray(R.array.behavior_question);
         mTvQuestion.setText(question[questionNo]);
+        setupAnswerTwoChoice();
         showNextButton();
     }
 
@@ -209,16 +208,18 @@ public class BehaviorQuestionFragment extends Fragment implements
         switch (v.getId()) {
             case R.id.btn_next:
                 nextQuestion();
+                clearAnswerSelect();
                 break;
             case R.id.btn_previous:
                 previousQuestion();
+                clearAnswerSelect();
                 break;
             case R.id.btn_done:
-                closePage();
+                showAnswerDialog();
                 break;
         }
 
-        clearAnswerSelect();
+
     }
 
     private void showPreviousAndNextButton() {
@@ -278,5 +279,48 @@ public class BehaviorQuestionFragment extends Fragment implements
     private void clearAnswerSelect() {
         mRgAnswerYourself.clearCheck();
         mRgAnswerLover.clearCheck();
+    }
+
+    private boolean calculateAnswer(){
+        int yourselfResult = 0;
+        int loverResult = 0;
+
+        for(int i = 0; i < question.length; i++){
+            yourselfResult += yourselfAnswer[i];
+        }
+
+        for(int i = 0; i < question.length; i++){
+            loverResult += loverAnswer[i];
+        }
+
+        return yourselfResult + loverResult >= 2;
+    }
+
+    private void showAnswerDialog(){
+        if(calculateAnswer()){
+            AlertDialog dialog = new AlertDialog.Builder(getContext())
+                    .setTitle("ผลการทดสอบ")
+                    .setMessage("มีความเสี่ยง")
+                    .setPositiveButton("รับทราบ", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            closePage();
+                        }
+                    })
+                    .show();
+        }else{
+            AlertDialog dialog = new AlertDialog.Builder(getContext())
+                    .setTitle("ผลการทดสอบ")
+                    .setMessage("ไม่มีความเสี่ยง")
+                    .setPositiveButton("รับทราบ", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            closePage();
+                        }
+                    })
+                    .show();
+        }
     }
 }
