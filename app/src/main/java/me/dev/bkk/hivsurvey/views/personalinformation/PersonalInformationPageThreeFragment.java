@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -74,6 +76,7 @@ public class PersonalInformationPageThreeFragment extends Fragment implements Vi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_done:
+                saveData();
                 closePage();
                 break;
         }
@@ -81,5 +84,23 @@ public class PersonalInformationPageThreeFragment extends Fragment implements Vi
 
     private void closePage() {
         getActivity().finish();
+    }
+
+    private void saveData(){
+        Prefs.putString("ever_been", getAnswer());
+    }
+
+    private String getAnswer(){
+        String answer = "";
+        switch (mRgAnswer.getCheckedRadioButtonId()){
+            case R.id.rbn_yes:
+                answer = mRbnYes.getText().toString();
+                break;
+            case R.id.rbn_no:
+                answer = mRbnNo.getText().toString();
+                break;
+        }
+
+        return answer;
     }
 }

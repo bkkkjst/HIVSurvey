@@ -2,6 +2,7 @@ package me.dev.bkk.hivsurvey.views.behaviorquestion;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -250,7 +253,7 @@ public class BehaviorQuestionFragment extends Fragment implements
                 yourselfAnswer[questionNo] = 1;
                 break;
             case R.id.rbn_yourself_answer_two:
-                yourselfAnswer[questionNo] =0;
+                yourselfAnswer[questionNo] = 0;
                 break;
             case R.id.rbn_yourself_answer_three:
                 yourselfAnswer[questionNo] = 0;
@@ -260,7 +263,7 @@ public class BehaviorQuestionFragment extends Fragment implements
                 break;
         }
 
-        switch (mRgAnswerLover.getCheckedRadioButtonId()){
+        switch (mRgAnswerLover.getCheckedRadioButtonId()) {
             case R.id.rbn_lover_answer_one:
                 loverAnswer[questionNo] = 1;
                 break;
@@ -281,23 +284,23 @@ public class BehaviorQuestionFragment extends Fragment implements
         mRgAnswerLover.clearCheck();
     }
 
-    private boolean calculateAnswer(){
+    private boolean calculateAnswer() {
         int yourselfResult = 0;
         int loverResult = 0;
 
-        for(int i = 0; i < question.length; i++){
+        for (int i = 0; i < question.length; i++) {
             yourselfResult += yourselfAnswer[i];
         }
 
-        for(int i = 0; i < question.length; i++){
+        for (int i = 0; i < question.length; i++) {
             loverResult += loverAnswer[i];
         }
 
         return yourselfResult + loverResult >= 2;
     }
 
-    private void showAnswerDialog(){
-        if(calculateAnswer()){
+    private void showAnswerDialog() {
+        if (calculateAnswer()) {
             AlertDialog dialog = new AlertDialog.Builder(getContext())
                     .setTitle("ผลการทดสอบ")
                     .setMessage("มีความเสี่ยง")
@@ -305,11 +308,24 @@ public class BehaviorQuestionFragment extends Fragment implements
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
+                            resetData();
                             closePage();
                         }
                     })
+                    .setNegativeButton("ส่งอีเมล", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_SEND);
+                            intent.setType("text/email");
+                            intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+                            intent.putExtra(Intent.EXTRA_SUBJECT, "ผลการทดสอบ");
+                            intent.putExtra(Intent.EXTRA_TEXT, getPersonalInformation("มีความเสี่ยง"));
+                            startActivity(Intent.createChooser(intent, "Send Email"));
+                            resetData();
+                        }
+                    })
                     .show();
-        }else{
+        } else {
             AlertDialog dialog = new AlertDialog.Builder(getContext())
                     .setTitle("ผลการทดสอบ")
                     .setMessage("ไม่มีความเสี่ยง")
@@ -317,10 +333,44 @@ public class BehaviorQuestionFragment extends Fragment implements
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
+                            resetData();
                             closePage();
+                        }
+                    })
+                    .setNegativeButton("ส่งอีเมล", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_SEND);
+                            intent.setType("text/email");
+                            intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+                            intent.putExtra(Intent.EXTRA_SUBJECT, "ผลการประเมินจากการทำแบบทดสอบ");
+                            intent.putExtra(Intent.EXTRA_TEXT, getPersonalInformation("ไม่มีความเสี่ยง"));
+                            startActivity(Intent.createChooser(intent, "Send Email"));
+                            resetData();
                         }
                     })
                     .show();
         }
+    }
+
+    private String getPersonalInformation(String result) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("ชื่อ: ").append(Prefs.getString("full_name", "-"))
+                .append("\n")
+                .append("หมายเลขบัตรประจำตัวประชาชน: ").append(Prefs.getString("id_card", "-"))
+                .append("\n")
+                .append("เบอร์โทรศัพท์: ").append(Prefs.getString("tel_no", "-"))
+                .append("\n")
+                .append("เพศ: ").append(Prefs.getString("gender", "-"))
+                .append("\n")
+                .append("อายุ: ").append(Prefs.getString("ages", "-"))
+                .append("\n")
+                .append("ผลการทดสอบ: ").append(result);
+
+        return builder.toString();
+    }
+
+    private void resetData(){
+        Prefs.clear();
     }
 }

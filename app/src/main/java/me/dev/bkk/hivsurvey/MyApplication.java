@@ -1,6 +1,9 @@
 package me.dev.bkk.hivsurvey;
 
 import android.app.Application;
+import android.content.ContextWrapper;
+
+import com.pixplicity.easyprefs.library.Prefs;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -13,6 +16,16 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initialFont();
+        initialPrefs();
+    }
+
+    private void initialPrefs() {
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
     }
 
     private void initialFont(){

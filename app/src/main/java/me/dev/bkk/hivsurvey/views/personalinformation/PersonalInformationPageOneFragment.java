@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -79,6 +81,7 @@ public class PersonalInformationPageOneFragment extends Fragment implements
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_next:
+                saveData();
                 openPageTwo();
                 break;
         }
@@ -90,5 +93,11 @@ public class PersonalInformationPageOneFragment extends Fragment implements
                 .replace(R.id.container, PersonalInformationPageTwoFragment.newInstance())
                 .addToBackStack(null)
                 .commit();
+    }
+
+    private void saveData(){
+        Prefs.putString("full_name", mTieName.getText().toString());
+        Prefs.putString("id_card", mTieIdCard.getText().toString());
+        Prefs.putString("tel_no", mTieTel.getText().toString());
     }
 }

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -37,6 +39,8 @@ public class PersonalInformationPageTwoFragment extends Fragment implements
     @BindView(R.id.btn_next)
     AppCompatButton mBtnNext;
     Unbinder unbinder;
+
+    private boolean isMen, isWomen = false;
 
     public PersonalInformationPageTwoFragment() {
         // Required empty public constructor
@@ -78,15 +82,20 @@ public class PersonalInformationPageTwoFragment extends Fragment implements
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_next:
+                saveData();
                 openPageThree();
                 break;
             case R.id.img_men:
                 mImgMen.setImageResource(R.drawable.ic_male);
                 mImgWomen.setImageResource(R.drawable.ic_female_gray);
+                isMen = true;
+                isWomen = false;
                 break;
             case R.id.img_women:
                 mImgMen.setImageResource(R.drawable.ic_male_gray);
                 mImgWomen.setImageResource(R.drawable.ic_female);
+                isWomen = true;
+                isMen = false;
                 break;
         }
     }
@@ -97,5 +106,22 @@ public class PersonalInformationPageTwoFragment extends Fragment implements
                 .replace(R.id.container, PersonalInformationPageThreeFragment.newInstance())
                 .addToBackStack(null)
                 .commit();
+    }
+
+    private void saveData(){
+        Prefs.putString("gender", getGender());
+        Prefs.putString("ages", mTieAge.getText().toString());
+    }
+
+    private String getGender(){
+
+        String gender = "";
+        if(isMen && !isWomen){
+            gender = "ชาย";
+        }else if(isWomen && !isMen){
+            gender = "หญิง";
+        }
+
+        return gender;
     }
 }
